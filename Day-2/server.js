@@ -3,11 +3,9 @@ const express = require("express")
 const app = express(); //Server Instance created
 
 app.get('/', (req,res)=>{
-    console.log('Hello World');
-    res.send("Hello from Home page !!!")
+    res.send("Hello from Home Page !!!")
 })
 app.get('/about', (req,res)=>{
-    console.log('Hello World');
     res.send("Hello from About Page !!!")
 })
 
