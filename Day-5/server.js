@@ -1,6 +1,6 @@
 const app = require('./src/app')
 
 app.listen(3000,()=>{
-    console.log("");
+    console.log("Server is running 3000");
     
 })
