@@ -9,6 +9,8 @@ dns.setServers(["1.1.1.1" ,"8.8.8.8"])
 connectToDB()
 
 
+
+
 app.listen(3000,(req,res)=>{
     console.log('Server Running on PORT 3000');
     
