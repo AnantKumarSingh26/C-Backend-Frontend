@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 
@@ -6,27 +6,19 @@ function App() {
 
   const [notes, setNotes] = useState([
     {
-      title: "Test Title 1",
-      description: "Test Description 1"
-    },
-    {
-      title: "Test Title 2",
-      description: "Test Description 2"
-    },
-    {
-      title: "Test Title 3",
-      description: "Test Description 3"
-    },
-    {
-      title: "Test Title 4",
-      description: "Test Description 4"
-    },
+      title: "Loading....",
+      
+    }
   ])
+  function fetchNotes(){
+       axios.get('http://localhost:3000/api/notes').then((res)=>{
+        setNotes(res.data.notes)
+      })
+  }
 
-  axios.get('http://localhost:3000/api/notes').then((res)=>{
-    setNotes(res.data.notes)
-    
-  })
+  useEffect(()=>{   //it is used to stop continious rendering of setNotes in notes 
+   fetchNotes();
+  },[])
 
   return (
     <>
