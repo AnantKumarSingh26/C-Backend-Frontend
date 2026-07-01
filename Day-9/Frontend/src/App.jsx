@@ -1,42 +1,72 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
-
   const [notes, setNotes] = useState([
     {
       title: "Loading....",
+    },
+  ]);
 
-    }
-  ])
+  const [editingNote, setEditingNote] = useState(null)
+  const [updatedTitle, setupdatedTitle] = useState("")
+  const [updatedDescription, setupdatedDescription] = useState("")
+  const [showPopup, setshowPopup] = useState(false)
+
+  //Get Method to fetch all notes from DB
   function fetchNotes() {
-    axios.get('http://localhost:3000/api/notes').then((res) => {
-      setNotes(res.data.notes)
-    })
+    axios.get("http://localhost:3000/api/notes").then((res) => {
+      setNotes(res.data.notes);
+    });
   }
+
+  // Post Method to Submit new Notes
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const { title, description } = e.target.elements
+    e.preventDefault();
+    const { title, description } = e.target.elements;
     console.log(title, description);
-    axios.post("http://localhost:3000/api/notes", {
-      title: title.value,
-      description: description.value
-    }).then(res=>{
+    axios
+      .post("http://localhost:3000/api/notes", {
+        title: title.value,
+        description: description.value,
+      })
+      .then((res) => {
+        console.log(res.data);
+        fetchNotes();
+        alert("Note Created Successfully");
+      });
+  }
+
+  // Delete Method to Delete existing notes from DB
+
+  function handleDeleteNote(noteId) {
+    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
       console.log(res.data);
       fetchNotes();
-      alert("Note Created Successfully")
+    });
+  }
 
+  //Patch method to update existing note in DB
+
+  function handleUpdateNote() {
+    axios.patch('http://localhost:3000/api/notes/'+ editingNote._id
+      ,{title:updatedTitle,description:updatedDescription}
+    ).then(()=>{
+      fetchNotes();
+      setshowPopup(false);
+      setEditingNote(null);
     })
 
   }
 
-  useEffect(() => {   //it is used to stop continious rendering of setNotes in notes 
+  //it is used to stop continious rendering of setNotes in notes
+  useEffect(() => {
     fetchNotes();
-  }, [])
+  }, []);
 
   return (
+
     <>
       <form action="" className="note-create-form" onSubmit={handleSubmit}>
         <input name="title" type="text" placeholder="Enter Title" />
@@ -44,18 +74,62 @@ function App() {
         <button>Create Note</button>
       </form>
       <div className="notes">
-        {
-          notes.map(note => {
-            return <div className="note">
+        {notes.map((note) => {
+          return (
+            <div className="note">
               <h1>{note.title}</h1>
               <p>{note.description}</p>
+              <div className="buttons">
+                <button
+                  onClick={() => {
+                    handleDeleteNote(note._id);
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => {
+                    setEditingNote(note);
+                    setupdatedTitle(note.title)
+                    setupdatedDescription(note.description)
+                    setshowPopup(true)
+                  }}
+                >
+                  Update
+                </button>
+              </div>
             </div>
-          })
-        }
-
+          );
+        })}
       </div>
+      {showPopup && (
+        <div className="popup">
+          <input
+            name="title"
+            type="text"
+            placeholder="Enter Title"
+            value = {updatedTitle}
+            onChange = {(e)=>setupdatedTitle(e.target.value)}
+          />
+
+          <input
+            name="description"
+            type="text"
+            placeholder="Enter Description"
+            value = {updatedDescription}
+            onChange = {(e)=>setupdatedDescription(e.target.value)}
+          />
+
+          <button onClick={handleUpdateNote}>Save</button>
+          <button onClick={() => setshowPopup(false)}>
+            Cancel
+          </button>
+        </div>
+      )}
     </>
-  )
+
+
+  );
 }
 
-export default App
+export default App;

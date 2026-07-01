@@ -31,3 +31,8 @@ html{
   gap: 1rem;
   padding: 3rem 1rem;
 }
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
