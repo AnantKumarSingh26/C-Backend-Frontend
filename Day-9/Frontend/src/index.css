@@ -26,3 +26,8 @@ html{
   max-width: 20rem;
   color: white;
 }
+.note-create-form{
+  display: flex;
+  gap: 1rem;
+  padding: 3rem 1rem;
+}
