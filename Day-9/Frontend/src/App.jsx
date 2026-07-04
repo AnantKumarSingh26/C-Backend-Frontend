@@ -15,7 +15,7 @@ function App() {
 
   //Get Method to fetch all notes from DB
   function fetchNotes() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://c-backend-frontend.onrender.com/api/notes").then((res) => {
       setNotes(res.data.notes);
     });
   }
@@ -27,7 +27,7 @@ function App() {
     const { title, description } = e.target.elements;
     console.log(title, description);
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://c-backend-frontend.onrender.com/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -41,7 +41,7 @@ function App() {
   // Delete Method to Delete existing notes from DB
 
   function handleDeleteNote(noteId) {
-    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
+    axios.delete("https://c-backend-frontend.onrender.com/api/notes/" + noteId).then((res) => {
       console.log(res.data);
       fetchNotes();
     });
@@ -50,9 +50,9 @@ function App() {
   //Patch method to update existing note in DB
 
   function handleUpdateNote() {
-    axios.patch('http://localhost:3000/api/notes/'+ editingNote._id
-      ,{title:updatedTitle,description:updatedDescription}
-    ).then(()=>{
+    axios.patch('https://c-backend-frontend.onrender.com/api/notes/' + editingNote._id
+      , { title: updatedTitle, description: updatedDescription }
+    ).then(() => {
       fetchNotes();
       setshowPopup(false);
       setEditingNote(null);
@@ -108,16 +108,16 @@ function App() {
             name="title"
             type="text"
             placeholder="Enter Title"
-            value = {updatedTitle}
-            onChange = {(e)=>setupdatedTitle(e.target.value)}
+            value={updatedTitle}
+            onChange={(e) => setupdatedTitle(e.target.value)}
           />
 
           <input
             name="description"
             type="text"
             placeholder="Enter Description"
-            value = {updatedDescription}
-            onChange = {(e)=>setupdatedDescription(e.target.value)}
+            value={updatedDescription}
+            onChange={(e) => setupdatedDescription(e.target.value)}
           />
 
           <button onClick={handleUpdateNote}>Save</button>
