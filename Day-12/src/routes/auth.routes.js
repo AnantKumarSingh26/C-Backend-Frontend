@@ -10,7 +10,7 @@ authRouter.post('/register', async (req, res) => {
     const isUserAlreadyExist = await userModel.findOne({ email })
 
     if (isUserAlreadyExist) {
-        return res.status(400).json({
+        return res.status(409).json({
             message: 'User already exists with this email address'
         })
     }
@@ -25,11 +25,18 @@ authRouter.post('/register', async (req, res) => {
         },
         process.env.JWT_SECRET
     )
-    res.cookie("jwt-token",token)
+    res.cookie("jwt-token", token)
     res.status(201).json({
         message: 'User Registered Successfully',
         user,
         token
+    })
+})
+authRouter.post('/protected',async(req,res)=>{
+    console.log(req.cookies)
+
+    res.status(200).json({
+        message:"This is protected route"
     })
 })
 
