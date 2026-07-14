@@ -20,7 +20,6 @@
         type:String,
         default:"https://ik.imagekit.io/v3gzubezm/default-image.jpg?updatedAt=1783532903340"
     },
-
   })
 
   const userModel= mongoose.model("Users",userSchema)
