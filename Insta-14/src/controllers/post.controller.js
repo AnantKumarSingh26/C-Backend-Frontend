@@ -19,7 +19,9 @@ async function createPostController(req, res) {
     }
 
     try
-    {const decoded = jwt.verify(token, process.env.JWT_SECRET)}
+    {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    }
     catch(err){
         return res.status(401).json({
             message:"User Not Authorized"
@@ -43,6 +45,19 @@ async function createPostController(req, res) {
     res.status(201).json({
         message: "Post created Successfully."
     })
+}
+
+async function getPostController(req, res) {
+    const token = req.cookies.token 
+    let decoded;
+    try{
+        decoded = jwt.verify(token, process.env.JWT_SECRET)
+    }catch(err){
+        return res.status(401).json({
+            message:"Token Invalid"
+        })
+    }
+    const userId = decoded.id
 }
 
 module.exports = {
