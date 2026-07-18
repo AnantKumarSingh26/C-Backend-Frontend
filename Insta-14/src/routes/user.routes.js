@@ -7,7 +7,10 @@ const identifyUser = require('../middleware/auth.middleware')
 //! @desc Follow a user
 // ? access : private
 
+//Test to be done for follow and unfollow 
+
 userRouter.post('/follow/:username', identifyUser, userController.followUserController)
+userRouter.post('/unfollow/:username', identifyUser, userController.unfollowUserController)
 
 
 module.exports = userRouter;
