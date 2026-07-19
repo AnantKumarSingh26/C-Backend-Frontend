@@ -6,8 +6,18 @@ const followSchema = new mongoose.Schema({
     },
     followee: {
         type: String,
+    },
+    status: {
+        type: String,
+        default: "Pending",
+        enum: {
+            values: ['Pending', 'Accepted', 'Rejected'],
+            message: 'Status can only be Pending, Accepted or Rejected'
+        }
     }
-}, { timestamps: true })
+},
+    { timestamps: true })
+
 followSchema.index({
     follower: 1, followee: 1
 }, {
