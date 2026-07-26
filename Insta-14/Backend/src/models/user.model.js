@@ -13,7 +13,8 @@
     },
     password:{
         type:String,
-        required:[true,"Password Required to continue"]
+        required:[true,"Password Required to continue"],
+        select: false           //used to not read password when trying to read password
     },
     bio:String,
     profileImage:{
