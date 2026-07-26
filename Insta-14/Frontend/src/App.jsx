@@ -2,6 +2,7 @@ import { RouterProvider } from "react-router"
 import { router } from "./App.Routes"
 import "./Features/shared/global.scss"
 import { AuthProvider } from "./Features/auth/auth.context"
+import { PostContextProvider } from "./Features/posts/post.context"
 
 
 function App() {
@@ -9,8 +10,12 @@ function App() {
 
   return (
     <AuthProvider>
+      <PostContextProvider>
+        
+        <RouterProvider router={router} />
 
-      <RouterProvider router={router} />
+      </PostContextProvider>
+
     </AuthProvider>
   )
 }
