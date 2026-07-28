@@ -1,5 +1,5 @@
-import { getFeed } from '../services/post.api'
-import { useContext } from 'react'
+import { getFeed, createPost } from '../services/post.api'
+import { useContext,useEffect } from 'react'
 import { PostContext } from '../post.context'
 
 export const usePost = () => {
@@ -14,5 +14,14 @@ export const usePost = () => {
         setFeed(data.posts)
         setLoading(false)
     }
-    return {loading, feed ,post, handleGetFeed}
+    const handleCreatePost = async (imageFile,caption) =>{
+        setLoading(true)
+        const data = await createPost(imageFile, caption)
+        setFeed([data.post,...feed])
+        setLoading(false)
+    }
+    useEffect(()=>{
+        handleGetFeed()
+    },[])
+    return {loading, feed ,post, handleGetFeed, handleCreatePost}
 }

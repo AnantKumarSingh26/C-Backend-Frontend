@@ -1,0 +1,43 @@
+
+.select-container{
+    padding: 1rem;
+    border: 5px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    width: 350px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    .svg-icon{
+        width: 150px;
+    }
+    .select-text{
+        font-weight: 900;
+        font-size: 1.8rem;
+    }
+    .text-format{
+        font-size: 1.3rem;
+        color: rgb(167, 167, 155);
+    }
+    .post-image-label{
+        padding: 0.5rem 1.2rem;
+        border: none;
+        border-radius: 20px;
+        font-size: 1.2rem;
+        background-color: rgb(63, 63, 243);
+        color: #fff;    
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            background-color: rgb(119, 77, 255);
+            cursor: pointer;
+            scale: 0.9;
+        }
+    }
+}
+.post-image-label{
+    background-color: #fff;
+    color: black;
+}
