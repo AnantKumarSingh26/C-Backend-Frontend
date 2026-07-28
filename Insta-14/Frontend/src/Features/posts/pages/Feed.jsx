@@ -24,7 +24,7 @@ const Feed = () => {
             <div className="feed">
                 <div className="posts">
                     {feed.map(post=>{
-                        return <Post user= {post.user} post ={post} />
+                        return <Post user= {post.user} post ={post} key={post._id}/>
                     })}
                 </div>
             </div>
