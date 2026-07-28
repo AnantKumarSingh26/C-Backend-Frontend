@@ -17,7 +17,7 @@ export async function createPost(imageFile, caption) {
     formData.append("image", imageFile)
     formData.append("caption", caption)
 
-    const response = await api.post("/posts", formData)
+    const response = await api.post("/post", formData)
 
     return response.data
 }
