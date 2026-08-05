@@ -1,6 +1,11 @@
+import dotenv from "dotenv";
 import express from "express";
 import authRouter from "../routes/auth.routes.js";
 import handleError from "../middleware/error.middleware.js";
+
+
+
+dotenv.config();
 
 const app = express();
 
