@@ -11,6 +11,7 @@ io.on("connection", (socket) => {
   socket.on("message",(msg)=>{
     console.log("User Fired Message Event")
     console.log(msg)
+    io.emit("abc")
   })
 });
 
@@ -27,3 +28,8 @@ httpServer.listen(3000,()=>{
 //! socket => Single User
 //! on => Event ko Listen Krna
 //! emit => Event ko Fire Krna
+
+
+// ?    Socket.emit()
+//?     Socket.broadcast().emit
+//?     io.emit
