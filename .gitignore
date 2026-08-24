@@ -1,3 +1,70 @@
+# ==========================================
+# Dependencies (Never commit these)
+# ==========================================
 node_modules/
+**/node_modules/
+jspm_packages/
+web_modules/
+
+# ==========================================
+# Environment Variables & Secrets (CRITICAL)
+# ==========================================
 .env
-.md
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+config.env
+
+# ==========================================
+# Production Build Artifacts (React/Frontend)
+# ==========================================
+build/
+dist/
+out/
+.next/
+bin/
+obj/
+
+# ==========================================
+# Logs and Debugging
+# ==========================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+coverage/
+*.lcov
+.nyc_output
+
+# ==========================================
+# IDEs, Editors, and OS-Specific Files
+# ==========================================
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Local Database / Temporary Uploads
+# ==========================================
+.mongo/
+*.db
+*.sqlite
+uploads/
+public/uploads/
