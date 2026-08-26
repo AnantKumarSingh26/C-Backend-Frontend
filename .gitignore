@@ -68,3 +68,4 @@ desktop.ini
 *.sqlite
 uploads/
 public/uploads/
+RAG/sample.pdf
